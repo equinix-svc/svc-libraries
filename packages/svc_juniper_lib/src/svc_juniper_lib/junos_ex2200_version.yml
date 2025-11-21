@@ -1,0 +1,14 @@
+---
+# return EX Junos version
+
+EX2200Version:
+  rpc: get-software-information
+  args:
+    local: True
+  item: package-information
+  view: VersionView
+
+VersionView:
+  fields:
+    model: ../product-model
+    version: comment

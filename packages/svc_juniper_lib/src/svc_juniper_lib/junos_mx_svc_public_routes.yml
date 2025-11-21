@@ -1,0 +1,308 @@
+---
+# return routes for SVC public IP space
+
+br1svcat1corpequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '64.191.209.0/24'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewAT1
+
+RouteViewAT1:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+br1svcch3corpequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '64.191.201.0/24'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewAT1
+
+RouteViewCH3:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+br1svcda6corpequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '64.191.202.0/24'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewDA6
+
+RouteViewDA6:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+br1svcdc6corpequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '64.191.208.0/24'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewDC6
+
+RouteViewDC6:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+br1svcla3corpequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '64.191.194.0/24'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewLA3
+
+RouteViewLA3:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+br1svcmi1corpequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '64.191.203.0/24'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewMI1
+
+RouteViewMI1:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+br1svcny5corpequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '216.221.236.0/24'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewNY5
+
+RouteViewNY5:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+br1svcse3corpequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '216.221.237.0/24'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewSE3
+
+RouteViewSE3:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+br1svcsv5corpequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '64.191.192.0/24'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewSV5
+
+RouteViewSV5:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+svcbr1am3corpeuequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '5.175.84.64/26'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewAM3
+
+RouteViewAM3:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+svcbr1fr4corpeuequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '89.202.37.64/27'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewFR4
+
+RouteViewFR4:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+svcbr1ld5corpeuequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '89.187.97.0/27'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewLD5
+
+RouteViewLD5:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+br1svchk2apequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '27.111.194.64/26'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewHK2
+
+RouteViewHK2:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+br1svcos1apequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '103.8.180.64/26'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewOS1
+
+RouteViewOS1:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+br1svcsg2apequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '27.111.218.64/26'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewSG2
+
+RouteViewSG2:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+br1svcsy4apequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '180.189.30.64/26'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewSY4
+
+RouteViewSY4:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+br1svcty4apequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '180.189.11.128/26'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewTY4
+
+RouteViewTY4:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type
+
+br1svctr2corpequinixcom:
+  rpc: get-route-information
+  args:
+    destination: '216.221.238.0/24'
+  args_key: destination
+  item: route-table/rt
+  key: rt-destination
+  view: RouteViewTR2
+
+RouteViewTR2:
+  fields:
+    route_table: ../table-name
+    local_interface: rt-entry/nh/nh-local-interface
+    next_hop: rt-entry/nh/via
+    next_hop_service: rt-entry/nh/nh-service
+    next_hop_type: rt-entry/nh-type

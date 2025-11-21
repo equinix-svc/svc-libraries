@@ -1,0 +1,14 @@
+---
+# return EX3400 Junos version
+
+EX3400Version:
+  rpc: get-software-information
+  args:
+    local: True
+  item: package-information
+  view: VersionView
+
+VersionView:
+  fields:
+    host-name: ../host-name
+    version: ../junos-version

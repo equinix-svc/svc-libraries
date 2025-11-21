@@ -1,0 +1,16 @@
+---
+
+MXChassisHardware:
+  rpc: get-chassis-inventory
+  item: chassis/chassis-module/chassis-sub-module/chassis-sub-sub-module/chassis-sub-sub-sub-module
+  key: name
+  view: PortView
+
+PortView:
+  fields:
+    serial_number: serial-number
+    description: description
+    sub_sub_module: ../name
+    sub_module: ../../name
+    chassis_module: ../../../name
+

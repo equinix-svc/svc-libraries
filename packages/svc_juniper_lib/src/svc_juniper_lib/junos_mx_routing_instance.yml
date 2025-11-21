@@ -1,0 +1,15 @@
+---
+
+MXRouteInstance:
+  rpc: get-instance-information
+  args:
+    detail: True
+  item: instance-core
+  key: instance-name
+  view: InstanceView
+
+InstanceView:
+  fields:
+    instance_type: instance-type
+    route_distinguisher: instance-vrf/route-distinguisher
+    instance_interface: instance-interface/interface-name
