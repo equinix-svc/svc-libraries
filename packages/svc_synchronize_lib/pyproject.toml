@@ -9,7 +9,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = ">=3.8"
 svc-netbox-lib = { path = "../svc_netbox_lib", develop = true }
 svc-juniper-lib = { path = "../svc_juniper_lib", develop = true }
 
