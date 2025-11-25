@@ -1,0 +1,15 @@
+---
+
+QFXEXPhysicalTable:
+  rpc: get-interface-information
+  args:
+    interface_name: '[agxme][em]*'
+  args_key: interface_name
+  item: physical-interface
+  key: name
+  view: PhyView
+
+PhyView:
+  fields:
+    description: description
+    speed: speed

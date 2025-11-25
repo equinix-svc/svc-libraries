@@ -1,0 +1,12 @@
+---
+
+QFXVlanTable:
+  rpc: get-vlan-information
+  item: l2ng-l2ald-vlan-instance-group
+  key: l2ng-l2rtb-vlan-tag
+  view: VlanView
+
+VlanView:
+  fields:
+    vlan_name: l2ng-l2rtb-vlan-name
+

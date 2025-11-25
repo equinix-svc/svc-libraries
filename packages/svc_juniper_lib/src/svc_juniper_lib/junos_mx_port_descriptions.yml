@@ -1,0 +1,31 @@
+---
+
+MXPhysicalTable:
+  rpc: get-interface-information
+  args:
+    interface_name: '[axg]e*'
+  args_key: interface_name
+  item: physical-interface
+  key: name
+  view: PhyView
+
+MXLogicalTable:
+  rpc: get-interface-information
+  args:
+    interface_name: '[axml][eso]*'
+  args_key: interface_name
+  item: physical-interface/logical-interface
+  key: name
+  view: LogView
+
+PhyView:
+  fields:
+    description: description
+    speed: speed
+
+LogView:
+  fields:
+    description: description
+    link_address: link-address
+
+

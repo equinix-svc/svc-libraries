@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "svc-netbox-lib"
+version = "0.1.0"
+description = "NetBox utilities for SVC"
+authors = ["Lee Sharping <lsharping@equinix.com>"]
+
+packages = [
+    { include = "svc_netbox_lib", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+requests = "^2.27.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

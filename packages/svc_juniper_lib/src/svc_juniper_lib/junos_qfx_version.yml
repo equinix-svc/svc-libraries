@@ -1,0 +1,14 @@
+---
+# return QFX Junos version
+
+QFXVersion:
+  rpc: get-software-information
+  args:
+    local: True
+  item: package-information
+  view: VersionView
+
+VersionView:
+  fields:
+    host-name: ../host-name
+    version: ../junos-version

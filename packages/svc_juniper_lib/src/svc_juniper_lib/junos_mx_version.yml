@@ -1,0 +1,12 @@
+---
+# return MX Junos version
+
+MXVersion:
+  rpc: get-software-information
+  item: package-information
+  view: VersionView
+
+VersionView:
+  fields:
+    model: ../product-model
+    version: ../junos-version
