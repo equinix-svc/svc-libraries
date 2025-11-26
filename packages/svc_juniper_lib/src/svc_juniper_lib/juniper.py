@@ -36,6 +36,22 @@ from .junos_ex3400_version import EX3400Version
 # EXAMPLE: {2001: 'SVC: THOUSANDEYES AWS IPV4', 2002: 'SVC: THOUSANDEYES AZURE PRIMARY',
 # 2107: 'POC: CISCO VIRTUAL LAB BD-5'}
 def juniper_get_mx_interface_vlans_dictionary(fqdn, username, password):
+    """Return a mapping of MX subinterface VLAN IDs to their configured descriptions.
+
+    Parameters
+    ----------
+    fqdn : str
+        Hostname or IP of the MX device.
+    username : str
+        Username for device authentication.
+    password : str
+        Password for device authentication.
+
+    Returns
+    -------
+    dict[int, str]
+        Mapping of VLAN ID to description. If an interface has no description the value will be 'None'.
+    """
     # Netconf session to a juniper device
     with Device(host=fqdn, user=username, password=password, port='22', timeout=300) as dev:
         ports = MXLogicalTable(dev)
@@ -62,6 +78,22 @@ def juniper_get_mx_interface_vlans_dictionary(fqdn, username, password):
 # EXAMPLE: {3047: 'BILL_BLAKE_DEMO_3047', 3048: 'BILL_BLAKE_DEMO_3048', 3049: 'BILL_BLAKE_DEMO_3049',
 # 3051: 'BILL_BLAKE_DEMO_3051'}
 def juniper_get_qfx_vlans_dictionary(fqdn, username, password):
+    """Return a mapping of VLAN IDs to configured VLAN names on a QFX device.
+
+    Parameters
+    ----------
+    fqdn : str
+        Hostname or IP of the QFX device.
+    username : str
+        Username for device authentication.
+    password : str
+        Password for device authentication.
+
+    Returns
+    -------
+    dict[int, str]
+        Mapping of VLAN tag (int) to VLAN name (str).
+    """
     # Netconf session to a juniper device
     with Device(host=fqdn, user=username, password=password, port='22', timeout=300) as dev:
         vlans = QFXVlanTable(dev)
@@ -81,7 +113,25 @@ def juniper_get_qfx_vlans_dictionary(fqdn, username, password):
 # the interface description, type of SFP and the SFP speed
 # EXAMPLE: {'ge-0/0/0': {'description': 'POC: LS5.SV5 0/1/1', 'speed': '1Gbps', 'type': 'SMF'}}
 def juniper_get_qfx_interfaces(fqdn, username, password):
+    """Return QFX interface metadata including description, speed, and fiber/copper type.
 
+    Parameters
+    ----------
+    fqdn : str
+        Hostname or IP of the QFX device.
+    username : str
+        Username for device authentication.
+    password : str
+        Password for device authentication.
+
+    Returns
+    -------
+    dict[str, dict]
+        Mapping of interface name to a dict containing:
+        - 'description' (str)
+        - 'speed' (str) e.g. '1Gbps', '10Gbps' or 'None'
+        - 'type' (str) one of 'SMF', 'MMF', 'copper', or 'lag'
+    """
     # Netconf session to a juniper device
     with Device(host=fqdn, user=username, password=password, port='22', timeout=300) as dev:
         phy_port = QFXEXPhysicalTable(dev)
@@ -139,6 +189,25 @@ def juniper_get_qfx_interfaces(fqdn, username, password):
 # the interface description, type of SFP and the SFP speed
 # EXAMPLE: {'ge-1/0/0': {'description': '', 'speed': '1Gbps', 'type': 'copper'},
 def juniper_get_mx_interfaces(fqdn, username, password):
+    """Return MX interface metadata including description, speed, and fiber/copper type.
+
+    Parameters
+    ----------
+    fqdn : str
+        Hostname or IP of the MX device.
+    username : str
+        Username for device authentication.
+    password : str
+        Password for device authentication.
+
+    Returns
+    -------
+    dict[str, dict]
+        Mapping of interface name to a dict containing:
+        - 'description' (str)
+        - 'speed' (str)
+        - 'type' (str) one of 'SMF', 'MMF', 'copper', 'lag', or 'No SFP'
+    """
     # Netconf session to a juniper device
     with Device(host=fqdn, user=username, password=password, port='22',timeout=300) as dev:
         ports = MXPhysicalTable(dev)
@@ -195,6 +264,25 @@ def juniper_get_mx_interfaces(fqdn, username, password):
 # the interface description, type of SFP and the SFP speed
 # EXAMPLE: {'ge-0/1/0': {'description': 'SVC: CSW1-SVC.CH3 0/0/43', 'speed': '1Gbps', 'type': 'SMF'},
 def juniper_get_ex_interfaces(fqdn, username, password):
+    """Return EX/QFX-EX interface metadata including description, speed, and fiber/copper type.
+
+    Parameters
+    ----------
+    fqdn : str
+        Hostname or IP of the EX device.
+    username : str
+        Username for device authentication.
+    password : str
+        Password for device authentication.
+
+    Returns
+    -------
+    dict[str, dict]
+        Mapping of interface name to a dict containing:
+        - 'description' (str)
+        - 'speed' (str)
+        - 'type' (str) one of 'SMF', 'MMF', 'copper', or 'lag'
+    """
     # Netconf session to a juniper device
     with Device(host=fqdn, user=username, password=password, port='22',timeout=300) as dev:
         ports = QFXEXPhysicalTable(dev)
@@ -251,6 +339,27 @@ def juniper_get_ex_interfaces(fqdn, username, password):
 # EXAMPLE: {'64.191.201.2/31': 'SVC: THOUSANDEYES AWS IPV4', '64.191.201.4/30': 'SVC: THOUSANDEYES AZURE PRIMARY'}
 # NOTE: PUBLIC NETWORKS ARE ADDED MANUALLY TO THE YML FILE
 def juniper_get_mx_ipv4_public_routes(fqdn,site,username,password):
+    """Return public IPv4 networks configured at a specific SVC site on an MX device.
+
+    The function selects a site-specific route parser (from built-in YML models) to get public
+    networks and then maps each route to the interface description from the MX logical table.
+
+    Parameters
+    ----------
+    fqdn : str
+        Hostname or IP of the MX device.
+    site : str
+        Site identifier used to select the correct route parser (e.g. 'at1', 'ch3', 'ny5', etc.).
+    username : str
+        Username for device authentication.
+    password : str
+        Password for device authentication.
+
+    Returns
+    -------
+    dict[str, str]
+        Mapping of route (CIDR string) to the interface description (value).
+    """
     # Netconf session to a juniper device
     with Device(host=fqdn, user=username, password=password, port='22', timeout=300) as dev:
         if site =='at1':
@@ -306,6 +415,27 @@ def juniper_get_mx_ipv4_public_routes(fqdn,site,username,password):
 #This purpose of this function is to get the routing instance information from the MX router
 #EXAMPLE: {'RI-BBVA': {'instance_type': 'vpls', 'route_distinguisher': '0:0', 'instance_interface': ['xe-2/0/1.3031', 'ae0.3031', 'xe-2/0/1.3030', 'ae0.3030']}}
 def juniper_get_instance(fqdn, site, username, password):
+    """Retrieve routing-instance (VRF) information from an MX device.
+
+    Parameters
+    ----------
+    fqdn : str
+        Hostname or IP of the MX device.
+    site : str
+        Site label used when constructing certain route-distinguisher strings for special instances.
+    username : str
+        Username for device authentication.
+    password : str
+        Password for device authentication.
+
+    Returns
+    -------
+    dict[str, dict]
+        Mapping of routing-instance name to a dict with keys:
+        - 'instance_type' (str)
+        - 'route_distinguisher' (str or None)
+        - 'instance_interface' (list[str])
+    """
     # Netconf session to a juniper device
     with Device(host=fqdn, user=username, password=password, port='22',timeout=300) as dev:
         instance=MXRouteInstance(dev)
@@ -339,7 +469,22 @@ def juniper_get_instance(fqdn, site, username, password):
 
 #this will get the version of code on an MX
 def juniper_get_mx_version(fqdn, username, password):
+    """Return the software version string reported by a Juniper MX device.
 
+    Parameters
+    ----------
+    fqdn : str
+        Hostname or IP of the MX device.
+    username : str
+        Username for device authentication.
+    password : str
+        Password for device authentication.
+
+    Returns
+    -------
+    str
+        Version string as returned by the MX device model.
+    """
     dev = Device(host=fqdn, user=username, password=password, port='22',timeout=300).open()
     mx_version = MXVersion(dev)
     mx_version.get()
@@ -351,7 +496,22 @@ def juniper_get_mx_version(fqdn, username, password):
 
 #this will get the version of code on an QFX
 def juniper_get_qfx_version(fqdn, username, password):
+    """Return the software version string reported by a Juniper QFX device.
 
+    Parameters
+    ----------
+    fqdn : str
+        Hostname or IP of the QFX device.
+    username : str
+        Username for device authentication.
+    password : str
+        Password for device authentication.
+
+    Returns
+    -------
+    str
+        Version string as returned by the QFX device model.
+    """
     dev = Device(host=fqdn, user=username, password=password, port='22',timeout=300).open()
     qfx_version = QFXVersion(dev)
     qfx_version.get()
@@ -363,7 +523,22 @@ def juniper_get_qfx_version(fqdn, username, password):
 
 #this will get the version of code on an EX3400
 def juniper_get_ex3400_version(fqdn, username, password):
+    """Return the software version string reported by an EX3400 device.
 
+    Parameters
+    ----------
+    fqdn : str
+        Hostname or IP of the EX3400 device.
+    username : str
+        Username for device authentication.
+    password : str
+        Password for device authentication.
+
+    Returns
+    -------
+    str
+        Version string as returned by the EX3400 device model.
+    """
     dev = Device(host=fqdn, user=username, password=password, port='22',timeout=300).open()
     ex_version = EX3400Version(dev)
     ex_version.get()
@@ -375,7 +550,24 @@ def juniper_get_ex3400_version(fqdn, username, password):
 
 #this will get the version of code on an EX2200
 def juniper_get_ex2200_version(ip_address,username,password):
+    """Return the software version string reported by an EX2200 device.
 
+    The function extracts the version substring contained in square brackets, if present.
+
+    Parameters
+    ----------
+    ip_address : str
+        Hostname or IP of the EX2200 device.
+    username : str
+        Username for device authentication.
+    password : str
+        Password for device authentication.
+
+    Returns
+    -------
+    str
+        Extracted version string (contents inside brackets if present) or the raw version string.
+    """
     dev = Device(host=ip_address, user=username, password=password, port='22',timeout=300).open()
     ex_version = EX2200Version(dev)
     ex_version.get()
