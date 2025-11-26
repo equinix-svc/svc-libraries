@@ -25,18 +25,12 @@ svc-libraries/
 ├── packages/
 │ ├── svc_juniper_lib/
 │ │ └── src/svc_juniper_lib/
-│ │ ├── init.py
-│ │ └── juniper.py
 │ │
 │ ├── svc_netbox_lib/
 │ │ └── src/svc_netbox_lib/
-│ │ ├── init.py
-│ │ └── netbox.py
-│ │
+
 │ └── svc_synchronize_lib/
 │ └── src/svc_synchronize_lib/
-│ ├── init.py
-│ └── synchronize.py
 │
 ├── docs/ # MkDocs documentation (generated online)
 ├── mkdocs.yml # Documentation configuration
