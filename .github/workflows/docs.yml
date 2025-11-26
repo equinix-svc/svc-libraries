@@ -1,0 +1,31 @@
+name: Build and Deploy Docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements-docs.txt
+          pip install -e ./packages/svc_juniper_lib
+          pip install -e ./packages/svc_netbox_lib
+          pip install -e ./packages/svc_synchronize_lib
+
+      - name: Build & Deploy
+        run: |
+          mkdocs gh-deploy --force
+
