@@ -2,6 +2,10 @@ import requests
 
 
 def netbox_get_sites():
+    """
+    Get all sites from SVC
+    """
+
     svc_locations = ['ld5', 'dx1', 'da6', 'dc6', 'la3', 'mi1', 'ny5', 'se3', 'sv5', 'am3', 'ch3', 'fr4', 'at1', 'hk2',
                      'os1', 'sg2', 'sy4', 'ty4', 'tr2']
     return svc_locations

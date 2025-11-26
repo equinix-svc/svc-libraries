@@ -1,20 +1,13 @@
 site_name: SVC Python Libraries
-site_url: https://equinix-svc.github.io/svc-libraries/
-
-docs_dir: docs
-site_dir: site
+repo_url: https://github.com/equinix-svc/svc-libraries
 
 theme:
   name: material
-
-plugins:
-  - search
-  - mkdocstrings:
-      handlers:
-        python:
-          options:
-            docstring_style: google
-            show_source: true
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - content.code.annotate
 
 nav:
   - Home: index.md
@@ -22,3 +15,19 @@ nav:
       - Juniper: juniper.md
       - Netbox: netbox.md
       - Synchronize: synchronize.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths:
+            - packages/svc_juniper_lib/src
+            - packages/svc_netbox_lib/src
+            - packages/svc_synchronize_lib/src
+          options:
+            docstring_style: google
+            show_source: true
+            heading_level: 2
+            merge_init_into_class: true
+            show_root_heading: true

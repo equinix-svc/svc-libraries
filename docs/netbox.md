@@ -1,3 +1,3 @@
-# svc_netbox_lib
+# Netbox Library
 
 ::: svc_netbox_lib.netbox
