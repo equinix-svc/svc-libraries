@@ -4,7 +4,7 @@ A collection of internal Python libraries used by the SVC team for
 network automation and system synchronization.  
 This repository is organized as a *monorepo* and managed using **Poetry**.
 
-## 📦 Available Packages
+## Available Packages
 
 This repository contains three standalone libraries:
 
@@ -18,7 +18,7 @@ Each library is published as an installable Python package.
 
 ---
 
-## 🧱 Repository Structure
+## Repository Structure
 ```
 svc-libraries/
 │
@@ -36,7 +36,7 @@ svc-libraries/
 ├── mkdocs.yml # Documentation configuration
 └── pyproject.toml # Monorepo workspace config
 ```
-## 🚀 Installation
+## Installation
 
 You can install any library *directly from GitHub*:
 
