@@ -70,3 +70,35 @@ https://equinix-svc.github.io/svc-libraries
 
 Documentation is auto-generated using `mkdocs-material` + `mkdocstrings`.
 Source files live under `docs/`.
+
+## How to update
+### Install dependencies
+```
+poetry install
+pip install -r requirements-docs.txt
+```
+
+### Build packages
+1. `cd` to the package folder you want to update
+2. modify the `pyproject.toml`, like the version number
+3. run `poetry build`
+For example:
+```
+cd packages/svc_juniper_lib
+poetry build
+```
+![alt text](images/success_build.png)
+
+### Update documentation
+The documentation will be automatically updated after push to the remote origin. To test locally, run:
+```
+mkdocs serve
+```
+
+## CI/CD (GitHub Actions)
+The repository includes:
+- Automatic build for each package
+- Automatic deployment of documentation to GitHub Pages
+- Automatic versioning via Poetry
+
+All workflows are located under .`github/workflows/.`
